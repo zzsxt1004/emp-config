@@ -1,0 +1,68 @@
+spring:
+  profiles:
+   active: dev
+
+server:
+  port: 8091
+  
+spring:
+  profile: dev
+  application:
+    name: emp-consumer #注册中心挂个名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8092/eureka/  #客户端注册进eureka服务器列表内
+  instance:
+    instance-id: emp-provider
+    prefer-ip-address: true
+    
+#info页面展示
+info:
+  app:
+    name: emp-consumer-8091
+  company: 
+    name: www.sxt.cn
+  build:
+    artifactId: $project.artifactId$
+    version: $project.version$
+    
+#服务端调用地址 Ribbon和Eureka整合后Consumer可以直接调用服务而不用再关心地址和端口号
+provider_name: http://emp-provider
+
+feign:
+ hystrix: 
+    enabled: true
+    
+---
+server:
+  port: 8091
+  
+spring:
+  profile: test
+  application:
+    name: emp-consumer #注册中心挂个名字
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8092/eureka/  #客户端注册进eureka服务器列表内
+  instance:
+    instance-id: emp-provider
+    prefer-ip-address: true
+    
+#info页面展示
+info:
+  app:
+    name: emp-consumer-8091
+  company: 
+    name: www.sxt.cn
+  build:
+    artifactId: $project.artifactId$
+    version: $project.version$
+    
+#服务端调用地址 Ribbon和Eureka整合后Consumer可以直接调用服务而不用再关心地址和端口号
+provider_name: http://emp-provider
+
+feign:
+ hystrix: 
+    enabled: true
